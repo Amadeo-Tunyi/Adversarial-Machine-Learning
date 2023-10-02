@@ -187,7 +187,7 @@ class BoundaryAttack():
                 diff = np.mean(self.get_diff(adversarial_sample, target_sample))
                 if diff <= self.t_s or e_step > 500 or (n_steps % 500 == 0):
                     print("{} steps".format(n_steps))
-                    print("Mean Squared Error: {}".format(diff))
+                    print("l2 distance: {}".format(diff))
                     if self.model.predict(adversarial_sample) == correct_label:
                     
                         raise ValueError(f'Unsuccesful, actual_class: {correct_label} same as adv_class: {self.model.predict(adversarial_sample)}')
@@ -294,7 +294,7 @@ class BoundaryAttack():
                 diff = np.mean(self.get_diff(adversarial_sample, target_sample))
                 if diff <= self.t_s or e_step > 500 or (n_steps % 500 == 0):
                     print("{} steps".format(n_steps))
-                    print("Mean Squared Error: {}".format(diff))
+                    print("l2 distance: {}".format(diff))
                     if self.model.predict(pd.DataFrame(np.array(adversarial_sample).reshape((1, self.data.shape[1])), columns  = self.data.columns)) == correct_label:
                     
                         raise ValueError(f'Unsuccesful, actual_class: {correct_label} same as adv_class: {self.model.predict(pd.DataFrame(np.array(adversarial_sample).reshape((1, self.data.shape[1])), columns  = self.data.columns))}')
@@ -400,7 +400,7 @@ class BoundaryAttack():
                 diff = np.mean(self.get_diff(adversarial_sample, target_sample))
                 if diff <= self.t_s or e_step > 500 or (n_steps % 500 == 0):
                     print("{} steps".format(n_steps))
-                    print("Mean Squared Error: {}".format(diff))
+                    print("l2 distance: {}".format(diff))
                     if np.argmax(self.model.predict(pd.DataFrame(np.array(adversarial_sample).reshape((1, self.data.shape[1])), columns  = self.data.columns).iloc[0:1])[0]) == correct_label:
                     
                         raise ValueError(f'Unsuccesful, actual_class: {correct_label} same as adv_class: {np.argmax(self.model.predict(pd.DataFrame(np.array(adversarial_sample).reshape((1, self.data.shape[1])), columns  = self.data.columns).iloc[0:1])[0])}')
